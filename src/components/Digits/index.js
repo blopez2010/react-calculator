@@ -1,13 +1,14 @@
 import React from 'react';
+import { updateExpression } from '../../actions/expression';
 import store from '../../store';
 import Button from '../Button';
 
-export const digitClickHandler = num => {
-  if (!store.curExpression) {
-    return (store.newExpression = num);
+export const digitClickHandler = numberClicked => {
+  if (!store.getState().curExpression) {
+    return updateExpression(numberClicked);
   }
 
-  return (store.newExpression = `${store.curExpression}${num}`);
+  return updateExpression(`${store.getState().curExpression}${numberClicked}`);
 };
 
 export const Digits = () => (
